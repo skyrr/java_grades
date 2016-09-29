@@ -90,36 +90,24 @@ class MyFileWriter {
     double dig;
     public void writeToFile(FileDisplay f1) throws Exception {
         if (f1.dig >= 4.5) {
-            System.out.println(">>>>>>>>>>>>>>>>>>>>" + f1.dig + f1.str);
-            FileWriter gradesHigh = new FileWriter("\\grades\\src\\gradesHigh.txt", true);
-            BufferedWriter bw = new BufferedWriter(gradesHigh);
-            PrintWriter out = new PrintWriter(bw);
-            {
-                out.println(f1.str + " " + f1.dig);
-            }
-            out.flush();
-            out.close();
+            MyFileWriter.fileWritingProcess(">>>>>>>>>>>>>>>>>>>>", "\\grades\\src\\gradesHigh.txt", f1);
+
         } else if (f1.dig < 4.5 && f1.dig >= 4) {
-            System.out.println("<<<<<<<<<<<<<<<<<<<<" + f1.dig + f1.str);
-            FileWriter gradesMiddle = new FileWriter("\\grades\\src\\gradesMiddle.txt", true);
-            BufferedWriter bw = new BufferedWriter(gradesMiddle);
-            PrintWriter out = new PrintWriter(bw);
-            {
-                out.println(f1.str + " " + f1.dig);
-            }
-            out.flush();
-            out.close();
+            MyFileWriter.fileWritingProcess("<<<<<<<<<<<<<<<<<<<<", "\\grades\\src\\gradesMiddle.txt", f1);
         } else {
-            System.out.println("********************" + f1.dig + f1.str);
-            FileWriter gradesLow = new FileWriter("\\grades\\src\\gradesLow.txt", true);
-            BufferedWriter bw = new BufferedWriter(gradesLow);
-            PrintWriter out = new PrintWriter(bw);
-            {
-                out.println(f1.str + " " + f1.dig);
-            }
-            out.flush();
-            out.close();
+            MyFileWriter.fileWritingProcess("********************", "\\grades\\src\\gradesLow.txt", f1);
         }
     }
 
+    public static void fileWritingProcess(String forDisplay, String filePath, FileDisplay f1) throws Exception {
+        System.out.println(forDisplay + f1.dig + f1.str);
+        FileWriter gradesHigh = new FileWriter(filePath, true);
+        BufferedWriter bw = new BufferedWriter(gradesHigh);
+        PrintWriter out = new PrintWriter(bw);
+        {
+            out.println(f1.str + " " + f1.dig);
+        }
+        out.flush();
+        out.close();
+    }
 }
